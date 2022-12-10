@@ -1,7 +1,7 @@
 
 import 'package:final_project/shared/bloc_observer.dart';
 import 'package:final_project/start_3screens/register_screen/cubit.register.dart';
-import 'package:final_project/start_3screens/register_screen/states.register.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,16 +26,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(providers: [
       BlocProvider(create: (BuildContext context)=>SocialRegisterCubit()),
     ],
-        child:BlocConsumer<SocialRegisterCubit, SocialRegisterStates>(
-          listener: (context,state){},
-          builder: (context,state){
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home:Register_Screen(),
-            );
-          },
-
-    ));
+        child:MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home:Register_Screen(),
+        ));
 
   }
 }

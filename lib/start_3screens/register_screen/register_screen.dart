@@ -20,7 +20,7 @@ class Register_Screen extends StatelessWidget {
       listener: (context,state){},
       builder: (context,state){
         return Scaffold(
-          backgroundColor: Colors.blue[300],
+          backgroundColor: Colors.blue,
 
           body: SingleChildScrollView(
             child: Stack(
@@ -42,7 +42,7 @@ class Register_Screen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
                     margin: const EdgeInsets.only(top: 200,left: 50,right: 50),
                     width: double.infinity,
-                    height: 500,
+                    height: 495,
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
@@ -57,7 +57,9 @@ class Register_Screen extends StatelessWidget {
                     child: Form(
                       key: formKey,
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+
                           defaultFormField(
                             controller: nameController,
                             type: TextInputType.name,
@@ -135,7 +137,7 @@ class Register_Screen extends StatelessWidget {
                               }
 
                             },
-                            background: Colors.blue.shade300,
+                            background: Colors.blue,
                             text: 'register',
                             isUppercase: true,
                           ),
