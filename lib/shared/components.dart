@@ -14,6 +14,7 @@ Widget defaultButton ({
   height: 40.0,
   width: width,
   color: background,
+
   child: MaterialButton(
     onPressed: () {
       function();
@@ -72,15 +73,29 @@ Widget defaultFormField({
   onFieldSubmitted: onsubmit,
 
   decoration: InputDecoration(
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(20),
+      borderSide: BorderSide(
+        color: Colors.white,
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(20),
+      borderSide: BorderSide(
+        color: Colors.black,
+      ),),
     labelText: (label),
     prefixIcon:Icon(prifex),
     suffixIcon: suffix !=null ? IconButton(
+      color: Colors.black12,
         onPressed:suffixpressed
         ,icon: Icon(suffix)) :null,
     // ignore: prefer_const_constructors
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(20)
-    ),
+
+    // border: OutlineInputBorder(
+    //
+    //   borderRadius: BorderRadius.circular(20)
+    // ),
 
 
   ),
