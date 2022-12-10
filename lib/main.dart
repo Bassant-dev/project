@@ -1,7 +1,6 @@
 
 import 'package:final_project/shared/bloc_observer.dart';
 import 'package:final_project/start_3screens/register_screen/cubit.register.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
