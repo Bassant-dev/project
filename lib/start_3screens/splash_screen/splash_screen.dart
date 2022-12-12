@@ -86,7 +86,7 @@ class _SplashScreenState extends State<SplashScreen>
                     duration: const Duration(seconds: 1),
                     child: const Text(
                       'W A T C H',
-                      style: TextStyle(fontSize: 55.0, color: Colors.lightBlue),
+                      style: TextStyle(fontSize: 53.0, color: Colors.lightBlue),
                     ),
                   ),
                 ),
