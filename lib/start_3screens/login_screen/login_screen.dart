@@ -1,6 +1,8 @@
+import 'package:final_project/screensapp/screensapp.dart';
 import 'package:final_project/shared/components.dart';
 import 'package:final_project/start_3screens/login_screen/cubit_login.dart';
 import 'package:final_project/start_3screens/login_screen/states_login.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -18,6 +20,9 @@ class Logindesign extends StatelessWidget {
       listener: (context,state){
         if(state is SocialLoginErrorState){
           Fluttertoast.showToast(msg: 'Error :(');
+        }
+        else if(state is SocialLoginSuccessState){
+          navigateto(context, SocialApp() );
         }
       },
       builder: (context,state){
