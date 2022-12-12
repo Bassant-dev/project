@@ -1,3 +1,4 @@
+import 'package:final_project/screensapp/screensapp.dart';
 import 'package:final_project/shared/components.dart';
 import 'package:final_project/start_3screens/register_screen/cubit.register.dart';
 import 'package:final_project/start_3screens/register_screen/states.register.dart';
@@ -15,7 +16,11 @@ class Register_Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SocialRegisterCubit, SocialRegisterStates>(
-      listener: (context,state){},
+      listener: (context,state){
+        if(state is SocialCreateUserSuccessState){
+          navigateto(context, SocialApp() );
+        }
+      },
       builder: (context,state){
         return Container(
           padding: EdgeInsets.only(left: 35,top:130),
@@ -113,22 +118,49 @@ class Register_Screen extends StatelessWidget {
 
                               prifex: Icons.phone,
                             ),
-                            const SizedBox(
-                              height: 30.0,
+
+
+
+                            SizedBox(
+                              height: 40,
                             ),
-                            defaultButton(
-                              function: () {
-                                if(formKey.currentState!.validate()){
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Sign Up',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 27,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                CircleAvatar(
+                                  radius: 30,
+                                  backgroundColor: Color(0xff4c505b),
+                                  child: IconButton(
+                                      color: Colors.white,
+                                      onPressed: () {
+                                        if(formKey.currentState!.validate()){
+                                          SocialRegisterCubit.get(context).userRegister(
+                                              name: nameController.text,
+                                              email: emailController.text,
+                                              password: passwordController.text,
+                                              phone: phoneController.text);
 
-                                }
+                                        }
 
-                              },
-                              background: Colors.black54,
-                              text: 'register',
-                              isUppercase: true,
+                                      },
+                                      icon: Icon(
+                                        Icons.arrow_forward,
+                                      )),
+                                )
+                              ],
                             ),
-
+                            SizedBox(
+                              height: 40,
+                            ),
                           ],
+
                         ),
                       ),
                     ),

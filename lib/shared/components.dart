@@ -73,21 +73,24 @@ Widget defaultFormField({
   onFieldSubmitted: onsubmit,
 
   decoration: InputDecoration(
-    enabledBorder: OutlineInputBorder(
+    fillColor: Colors.grey.shade100,
+      filled: true,
+    border: OutlineInputBorder(
+
       borderRadius: BorderRadius.circular(20),
-      borderSide: BorderSide(
-        color: Colors.white,
-      ),
+      // borderSide: BorderSide(
+      //   color: Colors.black,
+      // ),focusedBorder: OutlineInputBorder(
+      //     //   borderRadius: BorderRadius.circular(20)),
+      //     //   // borderSide: BorderSide(
+      //     //   //   color: Colors.black,
+      //     //   // )),
     ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(20),
-      borderSide: BorderSide(
-        color: Colors.black,
-      ),),
+    //
     labelText: (label),
     prefixIcon:Icon(prifex),
     suffixIcon: suffix !=null ? IconButton(
-      color: Colors.black12,
+
         onPressed:suffixpressed
         ,icon: Icon(suffix)) :null,
     // ignore: prefer_const_constructors
