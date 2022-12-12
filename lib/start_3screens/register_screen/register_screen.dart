@@ -23,13 +23,17 @@ class Register_Screen extends StatelessWidget {
       },
       builder: (context,state){
         return Container(
+
           padding: EdgeInsets.only(left: 35,top:130),
           decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/img/register.png'),fit: BoxFit.cover)
           ),
+
           child: Scaffold(
+
             backgroundColor: Colors.transparent,
+
             body: Stack(
               children: [
                Container(
