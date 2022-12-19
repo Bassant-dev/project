@@ -24,8 +24,8 @@ class Register_Screen extends StatelessWidget {
       builder: (context,state){
         return Container(
 
-          padding: EdgeInsets.only(left: 35,top:130),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.only(left: 35,top:130),
+          decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/img/register.png'),fit: BoxFit.cover)
           ),
@@ -36,11 +36,9 @@ class Register_Screen extends StatelessWidget {
 
             body: Stack(
               children: [
-               Container(
-                 child: Text('Create\nAccount',style: TextStyle(color:Colors.white,
-                   fontSize: 40,fontWeight: FontWeight.bold
-                 ),),
-               ), 
+               const Text('Create\nAccount',style: TextStyle(color:Colors.white,
+                 fontSize: 40,fontWeight: FontWeight.bold
+               ),),
                 SingleChildScrollView(
                   child: Container(
                     padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*.20),
