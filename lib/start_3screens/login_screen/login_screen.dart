@@ -2,12 +2,31 @@ import 'package:final_project/screensapp/screensapp.dart';
 import 'package:final_project/shared/components.dart';
 import 'package:final_project/start_3screens/login_screen/cubit_login.dart';
 import 'package:final_project/start_3screens/login_screen/states_login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Logindesign extends StatelessWidget {
+
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
 
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
@@ -44,18 +63,18 @@ class Logindesign extends StatelessWidget {
                 child: Form(
                   key: formKey,
                   child: Column(children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Email',
-                        prefixIcon: Icon(Icons.email),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                        fillColor: Colors.grey.shade100,
-                        filled: true,
-                      ),
+                    defaultFormField(
                       controller: emailController,
-                      validator: (String? value){
-                        if(value!.isEmpty){ return 'please enter your email address'; }
+                      type: TextInputType.emailAddress,
+
+                      validate: (String ?value) {
+                        if (value!.isEmpty) {
+                          return 'please enter your email address';
+                        }
+                        return null;
                       },
+                      label: 'Email Address',
+                      prifex: Icons.email_outlined,
                     ),
                     SizedBox(height: 15,),
                     defaultFormField(
@@ -126,7 +145,11 @@ class Logindesign extends StatelessWidget {
                                 child:  IconButton(
                                   icon: Image.asset('assets/img/google.jpeg'),
                                   iconSize: 50,
-                                  onPressed: () {},
+                                  onPressed: ()async {
+                                    UserCredential cred = await signInWithGoogle();
+                                    navigateto(context, SocialApp() );
+                                    print(cred);
+                                  },
                                 )
                             ),
                           ),
