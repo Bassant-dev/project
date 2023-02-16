@@ -1,4 +1,7 @@
-import 'package:final_project/screensapp/screensapp.dart';
+
+import 'package:final_project/new_layout/home_screen.dart';
+
+
 import 'package:final_project/shared/components.dart';
 import 'package:final_project/start_3screens/login_screen/cubit_login.dart';
 import 'package:final_project/start_3screens/login_screen/states_login.dart';
@@ -12,19 +15,19 @@ import 'package:google_sign_in/google_sign_in.dart';
 class Logindesign extends StatelessWidget {
 
   Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
+
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    // Obtain the auth details from the request
+
     final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
-    // Create a new credential
+
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
 
-    // Once signed in, return the UserCredential
+
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
@@ -41,7 +44,7 @@ class Logindesign extends StatelessWidget {
           Fluttertoast.showToast(msg: 'Error :(');
         }
         else if(state is SocialLoginSuccessState){
-          navigateto(context, SocialApp() );
+          navigateto(context, ShopLayOut() );
         }
       },
       builder: (context,state){
@@ -63,6 +66,7 @@ class Logindesign extends StatelessWidget {
                 child: Form(
                   key: formKey,
                   child: Column(children: [
+
                     defaultFormField(
                       controller: emailController,
                       type: TextInputType.emailAddress,
@@ -99,10 +103,10 @@ class Logindesign extends StatelessWidget {
                       prifex: Icons.lock_outline,
                     ),
                     // SizedBox(height: 10,),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(onPressed: (){}, child: Text("Do you forget password?"),),
-                    ),
+                    // Align(
+                    //   alignment: Alignment.centerRight,
+                    //   child: TextButton(onPressed: (){}, child: Text("Do you forget password?"),),
+                    // ),
                     SizedBox(height: 15,),
 
                     Row(
@@ -147,7 +151,7 @@ class Logindesign extends StatelessWidget {
                                   iconSize: 50,
                                   onPressed: ()async {
                                     UserCredential cred = await signInWithGoogle();
-                                    navigateto(context, SocialApp() );
+                                    navigateto(context, ShopLayOut() );
                                     print(cred);
                                   },
                                 )

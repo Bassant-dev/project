@@ -1,4 +1,5 @@
-import 'package:final_project/screensapp/screensapp.dart';
+import 'package:final_project/new_layout/home_screen.dart';
+
 import 'package:final_project/shared/components.dart';
 import 'package:final_project/start_3screens/register_screen/cubit.register.dart';
 import 'package:final_project/start_3screens/register_screen/states.register.dart';
@@ -18,7 +19,7 @@ class Register_Screen extends StatelessWidget {
     return BlocConsumer<SocialRegisterCubit, SocialRegisterStates>(
       listener: (context,state){
         if(state is SocialCreateUserSuccessState){
-          navigateto(context, SocialApp() );
+          navigateto(context, ShopLayOut() );
         }
       },
       builder: (context,state){

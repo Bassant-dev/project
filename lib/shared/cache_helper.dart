@@ -40,5 +40,13 @@ class CacheHelper
   {
     return await sharedPreferences!.remove(key);
   }
+  static bool ? getBoolean({
+    required String key,
+  })
+  {
+    return sharedPreferences?.getBool(key);
+  }
 }
+
+
 

@@ -1,6 +1,7 @@
 
-import 'package:flutter/material.dart';
+import 'package:conditional_builder_rec/conditional_builder_rec.dart';
 
+import 'package:flutter/material.dart';
 
 
 Widget defaultButton ({
@@ -11,19 +12,23 @@ Widget defaultButton ({
   required String text,
 
 }) => Container(
+
   height: 40.0,
   width: width,
   color: background,
 
   child: MaterialButton(
+
     onPressed: () {
       function();
     },
     child: Text(
       isUppercase? text.toUpperCase():text,
       style: const TextStyle(
-          color: Colors.white
+          color: Colors.white,
+
       ),
+
 
     ),
 
@@ -116,3 +121,71 @@ Widget defaultTextButton({
         text.toUpperCase(),
       ),
     );
+Widget NewsItem(article, context) {
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Row(
+      children: [
+        Container(
+          width: 90,
+          height: 90,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(
+                  image: NetworkImage(
+                    '${article['urlToImage']}',
+                  ),
+                  fit: BoxFit.cover)),
+        ),
+        SizedBox(
+          width: 20,
+        ),
+        Expanded(
+          child: Container(
+            height: 90,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Text(
+                    '${article['title']}',
+                    style: Theme.of(context).textTheme.bodyText1,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Text(
+                  '${article['publishedAt']}',
+                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                ),
+              ],
+            ),
+          ),
+        )
+      ],
+    ),
+  );
+}
+Widget ListMino(list, context) {
+  return ConditionalBuilderRec(
+    condition: list.length > 0,
+    builder: (context) => ListView.separated(
+        physics: BouncingScrollPhysics(),
+        itemBuilder: (context, index) => NewsItem(list[index], context),
+        separatorBuilder: (context, index) => Container(
+          width: 180,
+          height: 1.5,
+          margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
+          color: Color(0xffc2a671),
+        ),
+        itemCount: list.length),
+    fallback: (context) => Center(
+      child: CircularProgressIndicator(
+        color: Color(0xffffddad),
+      ),
+    ),
+  );
+}
+
