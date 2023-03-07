@@ -74,7 +74,7 @@ class Register_Screen extends StatelessWidget {
 
                               validate: (String ?value) {
                                 if (value!.isEmpty) {
-                                  return 'please enter your email address';
+                                  return 'please enter your name';
                                 }
                                 return null;
                               },

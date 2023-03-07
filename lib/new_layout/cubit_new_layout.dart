@@ -1,5 +1,5 @@
 
-import 'package:final_project/new_layout/favourite_screen.dart';
+import 'package:final_project/favourite/favourite_screen.dart';
 import 'package:final_project/new_layout/product.dart';
 import 'package:final_project/new_layout/profile.dart';
 
