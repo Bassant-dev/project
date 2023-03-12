@@ -4,6 +4,7 @@ import 'package:final_project/new_layout/product.dart';
 import 'package:final_project/new_layout/profile.dart';
 
 import 'package:final_project/new_layout/states_new_layout.dart';
+import 'package:final_project/new_layout/test2.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

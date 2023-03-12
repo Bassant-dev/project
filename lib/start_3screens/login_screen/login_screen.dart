@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/new_layout/home_screen.dart';
 
 
@@ -152,6 +153,7 @@ class Logindesign extends StatelessWidget {
                                   onPressed: ()async {
                                     UserCredential cred = await signInWithGoogle();
                                     navigateto(context, ShopLayOut() );
+
                                     print(cred);
                                   },
                                 )
@@ -169,5 +171,12 @@ class Logindesign extends StatelessWidget {
       },
 
     );
+  }
+  GlobalKey<FormState>formstate=new GlobalKey<FormState>();
+  void addnotes() {
+    var formdata=formstate.currentState;
+    if(formdata!.validate()){
+formdata.save();
+    }
   }
 }

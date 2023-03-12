@@ -8,6 +8,7 @@ import 'package:final_project/shared/cache_helper.dart';
 import 'package:final_project/shared/dio_helper.dart';
 import 'package:final_project/start_3screens/login_screen/cubit_login.dart';
 import 'package:final_project/start_3screens/register_screen/cubit.register.dart';
+import 'package:final_project/start_3screens/splash_screen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -191,7 +192,7 @@ class MyApp extends StatelessWidget {
                 themeMode: CubitDark
                     .get(context)
                     .isDark ? ThemeMode.dark : ThemeMode.light,
-                home: ShopLayOut()
+                home: SplashScreen()
             );
     }
           );

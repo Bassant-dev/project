@@ -26,3 +26,4 @@ ShopCubit bloc2(context) {
   var bloc = BlocProvider.of<ShopCubit>(context);
   return bloc;
 }
+String? uid='';

@@ -1,9 +1,11 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/favourite/cubit_favourite.dart';
 import 'package:final_project/favourite/states_favourite.dart';
+import 'package:final_project/shared/usermodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+SocialUserModel ? model;
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({Key? key}) : super(key: key);
 
@@ -38,8 +40,13 @@ class FavouriteScreen extends StatelessWidget {
                     ,
                     onTap: ()
                     {
+                      CollectionReference collref=FirebaseFirestore.instance.collection("users");
+                      collref.add(model);
+
                       cubit.favorites[index].fav=false;
                       cubit.removeFavProduct(cubit.favorites[index]);
+
+
                     }),
               ),
             );

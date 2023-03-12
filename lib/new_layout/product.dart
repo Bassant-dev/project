@@ -2,6 +2,9 @@
 
 import 'package:final_project/favourite/cubit_favourite.dart';
 import 'package:final_project/favourite/states_favourite.dart';
+import 'package:final_project/new_layout/items.dart';
+import 'package:final_project/new_layout/test.dart';
+import 'package:final_project/shared/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -97,7 +100,12 @@ height: 10,
 
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: MaterialButton(onPressed: (){},child: Text('Try On',style: TextStyle(color: Colors.white),) ,),
+                                child: MaterialButton(onPressed: (){
+                                  if(index==0)
+                                 navigateto(context, items());
+                                  else if(index==1)
+                                  navigateto(context, items2());
+                                },child: Text('Try On',style: TextStyle(color: Colors.white),) ,),
                               ))
 
                         ],

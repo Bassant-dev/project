@@ -24,14 +24,14 @@ class ShopLayOut extends StatelessWidget {
 
             appBar: AppBar(
               iconTheme: IconThemeData(color: Colors.lightBlueAccent),
-              title: Text(
-                'new layout',
-                // style: TextStyle(
-                //     color: Colors.black,
-                //     fontWeight: FontWeight.w700,
-                //     fontSize: 30,
-                //     letterSpacing: 0),
-              ),
+              // title: Text(
+              //   'new layout',
+              //   // style: TextStyle(
+              //   //     color: Colors.black,
+              //   //     fontWeight: FontWeight.w700,
+              //   //     fontSize: 30,
+              //   //     letterSpacing: 0),
+              // ),
               actions: [
                 IconButton(
                 icon: Icon(Icons.brightness_4_outlined),
