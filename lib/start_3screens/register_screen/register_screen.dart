@@ -143,6 +143,20 @@ class Register_Screen extends StatelessWidget {
                                   child: IconButton(
                                       color: Colors.white,
                                       onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          barrierDismissible: true,
+                                          builder: (BuildContext context) {
+                                            return Center(
+                                              child: new CircularProgressIndicator(),
+                                            );
+                                          },
+                                        );
+                                        new Future.delayed(new Duration(seconds: 3), () {
+                                          navigateto(context, ShopLayOut() );
+                                        });
+                                       // navigateto(context, ShopLayOut() );
+
                                         if(formKey.currentState!.validate()){
                                           SocialRegisterCubit.get(context).userRegister(
                                               name: nameController.text,

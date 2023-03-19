@@ -1,4 +1,8 @@
 
+
+
+
+
 import 'package:final_project/start_3screens/login_screen/states_login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +17,11 @@ class SocialLoginCubit extends Cubit<SocialLoginStates> {
     required String email,
     required String password,
   }) {
+
+
     emit(SocialLoginLoadingState());
 
-    FirebaseAuth.instance.signInWithEmailAndPassword(
+  FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password).then((value) {
       print(value.user!.email);

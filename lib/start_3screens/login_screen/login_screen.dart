@@ -15,6 +15,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class Logindesign extends StatelessWidget {
 
+
   Future<UserCredential> signInWithGoogle() async {
 
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -27,7 +28,7 @@ class Logindesign extends StatelessWidget {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
-
+    UserCredential ? response;
 
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
@@ -151,6 +152,16 @@ class Logindesign extends StatelessWidget {
                                   icon: Image.asset('assets/img/google.jpeg'),
                                   iconSize: 50,
                                   onPressed: ()async {
+                                    showDialog(
+                                      context: context,
+                                      barrierDismissible: true,
+                                      builder: (BuildContext context) {
+                                        return Center(
+                                          child: new CircularProgressIndicator(),
+                                        );
+                                      },
+                                    );
+
                                     UserCredential cred = await signInWithGoogle();
                                     navigateto(context, ShopLayOut() );
 

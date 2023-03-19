@@ -1,4 +1,5 @@
 import 'package:final_project/dark/state_cubit.dart';
+import 'package:final_project/fav.dart';
 import 'package:final_project/favourite/cubit_favourite.dart';
 import 'package:final_project/new_layout/cubit_new_layout.dart';
 import 'package:final_project/new_layout/home_screen.dart';
@@ -6,6 +7,7 @@ import 'package:final_project/new_layout/states_new_layout.dart';
 import 'package:final_project/shared/bloc_observer.dart';
 import 'package:final_project/shared/cache_helper.dart';
 import 'package:final_project/shared/dio_helper.dart';
+import 'package:final_project/slider.dart';
 import 'package:final_project/start_3screens/login_screen/cubit_login.dart';
 import 'package:final_project/start_3screens/register_screen/cubit.register.dart';
 import 'package:final_project/start_3screens/splash_screen/splash_screen.dart';
@@ -48,10 +50,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (BuildContext context) => ShopCubit()
-            ,
-        ),
+        // BlocProvider(
+        //   create: (BuildContext context) => ShopCubit()
+        //     ,
+        // ),
 
         BlocProvider(create: (context) => CubitDark()..changeAppMode(
             fromShared: isDark
@@ -60,7 +62,7 @@ class MyApp extends StatelessWidget {
 
         BlocProvider(create: (BuildContext context)=>SocialRegisterCubit()),
         BlocProvider(create: (BuildContext context)=>SocialLoginCubit()),
-    BlocProvider(create :(context)=>FavoriteCubit()),
+    //BlocProvider(create :(context)=>FavoriteCubit()),
 
 
 
@@ -74,131 +76,122 @@ class MyApp extends StatelessWidget {
               child: BlocConsumer<CubitDark,StatesDark>(
                 listener: (context, state) {},
                 builder: (context, state) {
-                return
-      BlocConsumer<ShopCubit, ShopLayoutStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return BlocConsumer<FavoriteCubit,FavoriteStates>(
-          listener: (context, state) {},
-    builder: (context, state) {
-            return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                theme: ThemeData(
-                  primarySwatch: Colors.blue,
-                  scaffoldBackgroundColor: Colors.white,
-                  appBarTheme: AppBarTheme(
-                    titleSpacing: 20.0,
-                    backwardsCompatibility: false,
-                    systemOverlayStyle: SystemUiOverlayStyle(
-                      statusBarColor: Colors.white,
-                      statusBarIconBrightness: Brightness.dark,
-                    ),
 
-                    backgroundColor: Colors.white,
-                    elevation: 0.0,
 
-                    titleTextStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    iconTheme: IconThemeData(
-                      color: Colors.black,
-                    ),
-                  ),
+        return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+              scaffoldBackgroundColor: Colors.white,
+              appBarTheme: AppBarTheme(
+                titleSpacing: 20.0,
+                backwardsCompatibility: false,
+                systemOverlayStyle: SystemUiOverlayStyle(
+                  statusBarColor: Colors.white,
+                  statusBarIconBrightness: Brightness.dark,
+                ),
 
-                  elevatedButtonTheme: ElevatedButtonThemeData(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.black,
-                        fixedSize: Size(70, 70),
-                        shape: CircleBorder()),
-                  ),
+                backgroundColor: Colors.white,
+                elevation: 0.0,
 
-                  floatingActionButtonTheme: FloatingActionButtonThemeData(
-                    backgroundColor: Colors.blue,
+                titleTextStyle: TextStyle(
+                  color: Colors.black,
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                ),
+                iconTheme: IconThemeData(
+                  color: Colors.black,
+                ),
+              ),
+
+              elevatedButtonTheme: ElevatedButtonThemeData(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.black,
+                    fixedSize: Size(70, 70),
+                    shape: CircleBorder()),
+              ),
+
+              floatingActionButtonTheme: FloatingActionButtonThemeData(
+                backgroundColor: Colors.blue,
+              ),
+              bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                type: BottomNavigationBarType.fixed,
+                selectedItemColor: Colors.white,
+                unselectedItemColor: Colors.black,
+                elevation: 20.0,
+                backgroundColor: Colors.white,
+              ),
+              textTheme: TextTheme(
+                bodyText1: TextStyle(
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+                subtitle2: TextStyle(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            darkTheme: ThemeData(
+                primarySwatch: Colors.blue,
+                scaffoldBackgroundColor: HexColor('333739'),
+                appBarTheme: AppBarTheme(
+                  titleSpacing: 20.0,
+                  backwardsCompatibility: false,
+                  systemOverlayStyle: SystemUiOverlayStyle(
+                    statusBarColor: HexColor('333739'),
+                    statusBarIconBrightness: Brightness.light,
                   ),
-                  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-                    type: BottomNavigationBarType.fixed,
-                    selectedItemColor: Colors.white,
-                    unselectedItemColor: Colors.black,
-                    elevation: 20.0,
-                    backgroundColor: Colors.white,
+                  backgroundColor: HexColor('333739'),
+                  elevation: 0.0,
+                  titleTextStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                  textTheme: TextTheme(
-                    bodyText1: TextStyle(
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                    subtitle2: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
+                  iconTheme: IconThemeData(
+                    color: Colors.white,
                   ),
                 ),
-                darkTheme: ThemeData(
-                    primarySwatch: Colors.blue,
-                    scaffoldBackgroundColor: HexColor('333739'),
-                    appBarTheme: AppBarTheme(
-                      titleSpacing: 20.0,
-                      backwardsCompatibility: false,
-                      systemOverlayStyle: SystemUiOverlayStyle(
-                        statusBarColor: HexColor('333739'),
-                        statusBarIconBrightness: Brightness.light,
-                      ),
-                      backgroundColor: HexColor('333739'),
-                      elevation: 0.0,
-                      titleTextStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      iconTheme: IconThemeData(
-                        color: Colors.white,
-                      ),
-                    ),
-                    floatingActionButtonTheme: FloatingActionButtonThemeData(
-                      backgroundColor: Colors.blue,
-                    ),
-                    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-                      type: BottomNavigationBarType.fixed,
-                      selectedItemColor: Colors.black,
-                      unselectedItemColor: Colors.white,
-                      elevation: 20.0,
-                      backgroundColor: HexColor('333739'),
-                    ),
-                    textTheme: TextTheme(
-                      bodyText1: TextStyle(
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                      subtitle2: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    elevatedButtonTheme: ElevatedButtonThemeData(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          fixedSize: Size(120, 120),
-                          shape: CircleBorder()),
-                    ),
-                    buttonTheme: ButtonThemeData(
-
-                    )
+                floatingActionButtonTheme: FloatingActionButtonThemeData(
+                  backgroundColor: Colors.blue,
                 ),
-                themeMode: CubitDark
-                    .get(context)
-                    .isDark ? ThemeMode.dark : ThemeMode.light,
-                home: SplashScreen()
-            );
-    }
-          );
-        },
+                bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                  type: BottomNavigationBarType.fixed,
+                  selectedItemColor: Colors.black,
+                  unselectedItemColor: Colors.white,
+                  elevation: 20.0,
+                  backgroundColor: HexColor('333739'),
+                ),
+                textTheme: TextTheme(
+                  bodyText1: TextStyle(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                  subtitle2: TextStyle(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                elevatedButtonTheme: ElevatedButtonThemeData(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      fixedSize: Size(120, 120),
+                      shape: CircleBorder()),
+                ),
+                buttonTheme: ButtonThemeData(
 
-      );
+                )
+            ),
+            themeMode: CubitDark
+                .get(context)
+                .isDark ? ThemeMode.dark : ThemeMode.light,
+            home:SplashScreen(),
+        );
+
     }
               ),
 

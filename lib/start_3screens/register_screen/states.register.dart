@@ -30,3 +30,11 @@ class SocialGetUserSuccessStates extends SocialRegisterStates{ }
 class SocialGetUserLoadingStates extends SocialRegisterStates{ }
 class SocialGetUserErrorStates extends SocialRegisterStates{}
 
+class InitShopState extends SocialRegisterStates{}
+
+class ChangeBottomNavState extends SocialRegisterStates{}
+class FavoritesInitialState extends SocialRegisterStates{}
+class FavoritesSuccessfully extends SocialRegisterStates{}
+class RemovedSuccessfully extends SocialRegisterStates{}
+
+

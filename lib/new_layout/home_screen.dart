@@ -6,43 +6,40 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../start_3screens/register_screen/cubit.register.dart';
+import '../start_3screens/register_screen/states.register.dart';
+
 
 class ShopLayOut extends StatelessWidget {
   const ShopLayOut({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => ShopCubit()
+      create: (BuildContext context) => SocialRegisterCubit()
         ,
-      child: BlocConsumer<ShopCubit, ShopLayoutStates>(
+      child: BlocConsumer<SocialRegisterCubit,SocialRegisterStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          ShopCubit bloc1 = ShopCubit.get(context);
+          SocialRegisterCubit bloc1 = SocialRegisterCubit.get(context);
 
           return Scaffold(
 
-            appBar: AppBar(
-              iconTheme: IconThemeData(color: Colors.lightBlueAccent),
-              // title: Text(
-              //   'new layout',
-              //   // style: TextStyle(
-              //   //     color: Colors.black,
-              //   //     fontWeight: FontWeight.w700,
-              //   //     fontSize: 30,
-              //   //     letterSpacing: 0),
-              // ),
-              actions: [
-                IconButton(
-                icon: Icon(Icons.brightness_4_outlined),
-                    onPressed: () {
+            // appBar: AppBar(
 
-                        CubitDark.get(context).changeAppMode();
-                    },
 
-                )
-              ],
-            ),
+            //   actions: [
+            //     IconButton(
+            //     icon: Icon(Icons.brightness_4_outlined),
+            //         onPressed: () {
+            //
+            //             CubitDark.get(context).changeAppMode();
+            //         },
+            //
+            //     )
+            //   ],
+            // ),
             body: bloc1.Home_widget[bloc1.current],
             bottomNavigationBar: Container(
               // margin: EdgeInsets.all(20),

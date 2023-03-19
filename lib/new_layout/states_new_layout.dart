@@ -1,6 +1,6 @@
-
-abstract class ShopLayoutStates {}
-
-class InitShopState extends ShopLayoutStates {}
-
-class ChangeBottomNavState extends ShopLayoutStates {}
+//
+// abstract class ShopLayoutStates {}
+//
+// class InitShopState extends ShopLayoutStates {}
+//
+// class ChangeBottomNavState extends ShopLayoutStates {}
