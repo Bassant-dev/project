@@ -165,6 +165,7 @@ class MyApp extends StatelessWidget {
                   backgroundColor: HexColor('333739'),
                 ),
                 textTheme: TextTheme(
+
                   bodyText1: TextStyle(
                     fontSize: 25.0,
                     fontWeight: FontWeight.bold,
@@ -189,7 +190,7 @@ class MyApp extends StatelessWidget {
             themeMode: CubitDark
                 .get(context)
                 .isDark ? ThemeMode.dark : ThemeMode.light,
-            home:SplashScreen(),
+            home:ShopLayOut(),
         );
 
     }

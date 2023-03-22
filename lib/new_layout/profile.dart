@@ -42,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return BlocConsumer<SocialRegisterCubit, SocialRegisterStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var usermodel = SocialRegisterCubit.get(context).model;
+
 
         return Scaffold(
           body: FutureBuilder<SocialUserModel?>(

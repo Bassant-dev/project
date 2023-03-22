@@ -44,7 +44,7 @@ class ShopLayOut extends StatelessWidget {
             bottomNavigationBar: Container(
               // margin: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                  color: Colors.lightBlueAccent,
+                  color:  Colors.blue[300],
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(50),
                       topLeft: Radius.circular(50)),
