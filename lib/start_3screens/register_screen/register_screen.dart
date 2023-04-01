@@ -16,7 +16,7 @@ class Register_Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SocialRegisterCubit, SocialRegisterStates>(
+    return BlocConsumer<SocialCubit , SocialStates>(
       listener: (context,state){
         if(state is SocialCreateUserSuccessState){
           navigateto(context, ShopLayOut() );
@@ -88,12 +88,12 @@ class Register_Screen extends StatelessWidget {
 
                               controller: passwordController,
                               type: TextInputType.visiblePassword,
-                              suffix: SocialRegisterCubit.get(context).suffix,
+                              suffix: SocialCubit.get(context).suffix,
 
-                              isPassword: SocialRegisterCubit.get(context).isPassword,
+                              isPassword: SocialCubit.get(context).isPassword,
                               suffixpressed: () {
 
-                                SocialRegisterCubit.get(context)
+                                SocialCubit.get(context)
                                     .changePasswordVisibility();
                               },
                               validate: (String ? value) {
@@ -158,7 +158,7 @@ class Register_Screen extends StatelessWidget {
                                        // navigateto(context, ShopLayOut() );
 
                                         if(formKey.currentState!.validate()){
-                                          SocialRegisterCubit.get(context).userRegister(
+                                          SocialCubit.get(context).userRegister(
                                               name: nameController.text,
                                               email: emailController.text,
                                               password: passwordController.text,

@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
         ),),
 
 
-        BlocProvider(create: (BuildContext context)=>SocialRegisterCubit()),
+        BlocProvider(create: (BuildContext context)=>SocialCubit()),
         BlocProvider(create: (BuildContext context)=>SocialLoginCubit()),
     //BlocProvider(create :(context)=>FavoriteCubit()),
 
@@ -190,7 +190,7 @@ class MyApp extends StatelessWidget {
             themeMode: CubitDark
                 .get(context)
                 .isDark ? ThemeMode.dark : ThemeMode.light,
-            home:ShopLayOut(),
+            home:SplashScreen(),
         );
 
     }

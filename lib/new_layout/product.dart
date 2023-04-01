@@ -1,6 +1,8 @@
 
 import 'dart:convert';
 
+import 'package:final_project/categorymodel.dart';
+import 'package:final_project/constant/constant.dart';
 import 'package:final_project/new_layout/items.dart';
 import 'package:final_project/new_layout/test.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +10,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../category.dart';
+import '../classic.dart';
 import '../shared/cache_helper.dart';
 import '../shared/components.dart';
+import '../sport.dart';
 import '../start_3screens/register_screen/cubit.register.dart';
 import '../start_3screens/register_screen/states.register.dart';
 
@@ -22,9 +26,9 @@ class ProductsScreen extends StatelessWidget
   @override
   Widget build(BuildContext context)
   {
-    return BlocConsumer<SocialRegisterCubit,SocialRegisterStates>(
+    return BlocConsumer<SocialCubit,SocialStates>(
       builder: (context, state) {
-        var cubit = SocialRegisterCubit.get(context);
+        var cubit = SocialCubit.get(context);
         return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.blue[300],
@@ -145,7 +149,7 @@ class ProductsScreen extends StatelessWidget
                                           onTap: ()
                                           {
 
-                                            cubit.isFavorites(cubit.products[index],user,cubit.products[index].name);
+                                            cubit.isFavorites(cubit.products[index],uid,cubit.products[index].name);
 
 
                                           }),
@@ -201,6 +205,93 @@ class ProductsScreen extends StatelessWidget
       listener: (context, state) {
 
       },
+    );
+  }
+}
+
+
+class Categories extends StatelessWidget {
+  const Categories({
+    Key? key,
+  }) : super(key: key);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 130,
+
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: demo_categories.length,
+        itemBuilder: (context, index) => CategoryCard(
+          icon: demo_categories[index].icon,
+          title:demo_categories[index].title,
+          press: () {
+            if(index==0){
+// navigateto(context, items2());
+            }
+            else if(index==1){
+              navigateto(context, classicScreen(uId:uid ));
+            }
+            else if(index==2){
+
+            }
+            else if(index==3){
+              navigateto(context, sportScreen(uId:uid ));
+            }
+          },
+        ),
+        separatorBuilder: (context, index) =>
+        const SizedBox(width: defaultPadding),
+      ),
+    );
+  }
+}
+
+class CategoryCard extends StatelessWidget {
+  const CategoryCard({
+    Key? key,
+    required this.icon,
+    required this.title,
+    required this.press,
+  }) : super(key: key);
+
+  final String icon, title;
+  final VoidCallback press;
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      onPressed: press,
+      style: OutlinedButton.styleFrom(
+        backgroundColor:  Colors.blue[300],
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius)),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+            vertical: defaultPadding / 2, horizontal: defaultPadding /4),
+        child: Column(
+          children: [
+            //SvgPicture.asset(icon),
+            Container(
+              height: 80,
+              width: 80,
+              child:CircleAvatar(
+                radius: 25,
+                backgroundImage:AssetImage(icon),
+
+              ),),
+            const SizedBox(height: defaultPadding / 2),
+            Text(
+              title,
+              style:TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

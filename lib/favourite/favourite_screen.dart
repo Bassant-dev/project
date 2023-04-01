@@ -15,11 +15,11 @@ class FavouriteScreen extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SocialRegisterCubit,SocialRegisterStates>(
+    return BlocConsumer<SocialCubit,SocialStates>(
       listener: (context, state) {},
       builder: (context, state)
       {
-        var cubit=SocialRegisterCubit.get(context);
+        var cubit=SocialCubit.get(context);
         return Scaffold(
             appBar: AppBar(
               title:const  Text('favorites'),
@@ -44,7 +44,7 @@ class FavouriteScreen extends StatelessWidget
                       onTap: ()
                       {
                         cubit.favorites[index].fav=false;
-                        cubit.removeFavProduct(cubit.favorites[index],cubit.uid2,cubit.favorites[index].name);
+                        cubit.removeFavProduct(cubit.favorites[index],uid,cubit.favorites[index].name);
                       }),
                 ),
               );

@@ -1,13 +1,13 @@
-abstract class SocialRegisterStates {}
-class SocialRegisterInitialState extends SocialRegisterStates {}
-class SocialRegisterChangePasswordVisibilityState extends SocialRegisterStates {}
-class SocialRegisterLoadingState extends SocialRegisterStates {}
+abstract class SocialStates {}
+class SocialRegisterInitialState extends SocialStates {}
+class SocialRegisterChangePasswordVisibilityState extends SocialStates {}
+class SocialRegisterLoadingState extends SocialStates {}
 
-class SocialRegisterSuccessState extends SocialRegisterStates
+class SocialRegisterSuccessState extends SocialStates
 {
 
 }
-class SocialRegisterErrorState extends SocialRegisterStates
+class SocialRegisterErrorState extends SocialStates
 {
   final String error;
 
@@ -15,26 +15,47 @@ class SocialRegisterErrorState extends SocialRegisterStates
 }
 
 
-class SocialCreateUserSuccessState extends SocialRegisterStates
+class SocialCreateUserSuccessState extends SocialStates
 {
 
 }
 
-class SocialCreateUserErrorState extends SocialRegisterStates
+class SocialCreateUserErrorState extends SocialStates
 {
   final String error;
 
   SocialCreateUserErrorState(this.error);
 }
-class SocialGetUserSuccessStates extends SocialRegisterStates{ }
-class SocialGetUserLoadingStates extends SocialRegisterStates{ }
-class SocialGetUserErrorStates extends SocialRegisterStates{}
+class SocialGetUserSuccessStates extends SocialStates{ }
+class SocialGetUserLoadingStates extends SocialStates{ }
+class SocialGetUserErrorStates extends SocialStates{}
 
-class InitShopState extends SocialRegisterStates{}
+class InitShopState extends SocialStates{}
 
-class ChangeBottomNavState extends SocialRegisterStates{}
-class FavoritesInitialState extends SocialRegisterStates{}
-class FavoritesSuccessfully extends SocialRegisterStates{}
-class RemovedSuccessfully extends SocialRegisterStates{}
+class ChangeBottomNavState extends SocialStates{}
+class FavoritesInitialState extends SocialStates{}
+class FavoritesSuccessfully extends SocialStates{}
+class RemovedSuccessfully extends SocialStates{}
+class SocialLoginInitialState extends SocialStates{}
+class SocialLoginChangePasswordVisibilityState extends SocialStates{}
+class SocialLoginLoadingState extends SocialStates{
+
+}
+
+class SocialLoginSuccessState extends SocialStates
+{
+  final String uid;
+
+  SocialLoginSuccessState(this.uid);
+
+}
+
+class SocialLoginErrorState extends SocialStates
+{
+  final String error;
+
+  SocialLoginErrorState(this.error);
+}
+
 
 

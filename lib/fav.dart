@@ -46,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen2> {
   @override
   Widget build(BuildContext context) {
     bool switchdark =false;
-    return BlocConsumer<SocialRegisterCubit, SocialRegisterStates>(
+    return BlocConsumer<SocialCubit, SocialStates>(
       listener: (context, state) {},
       builder: (context, state) {
 

@@ -1,24 +1,55 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:final_project/new_layout/product.dart';
-import 'package:final_project/shared/constant.dart';
-import 'package:final_project/shared/usermodel.dart';
 import 'package:final_project/start_3screens/register_screen/states.register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../fav.dart';
 import '../../favourite/favourite_screen.dart';
-import '../../new_layout/states_new_layout.dart';
-dynamic user = FirebaseAuth.instance.currentUser!.uid;
+import '../../new_layout/product.dart';
+import '../../new_layout/profile.dart';
+import '../../shared/cache_helper.dart';
+import '../../shared/usermodel.dart';
 
-class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
-  SocialRegisterCubit() : super(SocialRegisterInitialState());
 
-  static SocialRegisterCubit get(context) => BlocProvider.of(context);
+String uid='';
+
+class SocialCubit extends Cubit<SocialStates> {
+  SocialCubit() : super(SocialRegisterInitialState());
+
+  static SocialCubit get(context) => BlocProvider.of(context);
   SocialUserModel? model;
-  String ?uid2='';
 
+  void userLogin({
+    required String email,
+    required String password,
+  }) {
+
+
+    emit(SocialLoginLoadingState());
+
+    FirebaseAuth.instance.signInWithEmailAndPassword(
+        email:email,
+        password: password).then((value) {
+      print(value.user!.email);
+      print(value.user!.uid);
+      uid=CacheHelper.getData(key: "uid");
+      emit(SocialLoginSuccessState(value.user!.uid));
+    }).catchError((error) {
+      emit(SocialLoginErrorState(error.toString()));
+    });
+  }
+
+
+  IconData suffix = Icons.visibility_outlined;
+  bool isPassword = true;
+
+  void changePasswordVisibility()
+  {
+    isPassword = !isPassword;
+    suffix = isPassword ? Icons.visibility : Icons.visibility_off ;
+
+    emit(SocialLoginChangePasswordVisibilityState());
+  }
   void userRegister({
     required String name,
     required String email,
@@ -27,7 +58,7 @@ class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
   }) async{
     emit(SocialRegisterLoadingState());
 
-   FirebaseAuth.instance
+    FirebaseAuth.instance
         .createUserWithEmailAndPassword(
       email: email,
       password: password,
@@ -35,10 +66,11 @@ class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
         .then((value) {
       print(value.user!.email);
       print(value.user!.uid);
-      uid2=value.user!.uid;
+      CacheHelper.saveData(key: "uid", value:value.user!.uid);
+      uid=value.user!.uid;
 
       UserCreate(
-        uid: value.user!.uid,
+        uid:uid,
         phone: phone,
         email: email,
         name: name,
@@ -47,10 +79,12 @@ class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
       emit(SocialRegisterErrorState(error.toString()));
     });
   }
+
   List<Widget> Home_widget = [
-    ProductsScreen(uId: user ),
-   FavouriteScreen(uId: user,),
-    ProfileScreen2()
+    ProductsScreen(uId: uid ),
+    FavouriteScreen(uId: uid,),
+    ProfileScreen()
+
   ];
 
 
@@ -61,10 +95,10 @@ class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
     required String phone,
   }) {
     SocialUserModel model =
-        SocialUserModel(name: name, email: email, phone: phone, uid: uid);
+    SocialUserModel(name: name, email: email, phone: phone, uid: uid);
     FirebaseFirestore.instance
         .collection('users')
-        .doc(user)
+        .doc(uid)
         .set(model.toMap())
         .then((value) {
       emit(SocialCreateUserSuccessState());
@@ -73,11 +107,11 @@ class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
     });
   }
 
-  IconData suffix = Icons.visibility_outlined;
-  bool isPassword = true;
+  IconData suffix2 = Icons.visibility_outlined;
+  bool isPassword2 = true;
 
-  void changePasswordVisibility() {
-    isPassword = !isPassword;
+  void changePasswordVisibility2() {
+    isPassword2 = !isPassword;
     suffix = isPassword ? Icons.visibility : Icons.visibility_off;
 
     emit(SocialRegisterChangePasswordVisibilityState());
@@ -122,22 +156,84 @@ class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
       fav: false,
     ),
   ];
+  List<UserModel>products_classic = [
+    UserModel(fav: false,
+      name: 'watch 6', image: 'assets/img/watch1.jpg', discription: 'available',
+    ),
+    UserModel(
+        name: 'watch 7', image: 'assets/img/watch1.jpg', discription: 'available',fav: false),
+    UserModel(
+      name: 'watch 8', image: 'assets/img/watch1.jpg', discription: 'not available',
+      fav: false,
+    ),
+    UserModel(
+      name: 'watch 9', image: 'assets/img/watch1.jpg',discription: 'not available',
+      fav: false,
+    ),
+    UserModel(
+      name: 'watch 10', image: 'assets/img/watch1.jpg', discription: 'not available',
+      fav: false,
+    ),
+  ];
+
+  List<UserModel>products_smart = [
+    UserModel(fav: false,
+      name: 'watch 11', image: 'assets/img/watch1.jpg', discription: 'available',
+    ),
+    UserModel(
+        name: 'watch 12', image: 'assets/img/watch1.jpg', discription: 'available',fav: false),
+    UserModel(
+      name: 'watch 13', image: 'assets/img/watch1.jpg', discription: 'not available',
+      fav: false,
+    ),
+    UserModel(
+      name: 'watch 14', image: 'assets/img/watch1.jpg',discription: 'not available',
+      fav: false,
+    ),
+    UserModel(
+      name: 'watch 15', image: 'assets/img/watch1.jpg', discription: 'not available',
+      fav: false,
+    ),
+  ];
+
+
+  List<UserModel>products_sport = [
+    UserModel(fav: false,
+      name: 'watch 16', image: 'assets/img/watch1.jpg', discription: 'available',
+    ),
+    UserModel(
+        name: 'watch 17', image: 'assets/img/watch1.jpg', discription: 'available',fav: false),
+    UserModel(
+      name: 'watch 18', image: 'assets/img/watch1.jpg', discription: 'not available',
+      fav: false,
+    ),
+    UserModel(
+      name: 'watch 19', image: 'assets/img/watch1.jpg',discription: 'not available',
+      fav: false,
+    ),
+    UserModel(
+      name: 'watch 20', image: 'assets/img/watch1.jpg', discription: 'not available',
+      fav: false,
+    ),
+  ];
 
   List<UserModel>favorites=[];
 
-  bool isFavorites(UserModel model,uId,productName)
+
+  bool isFavorites(UserModel model,email,productName)
   {
     model.fav=!model.fav;
 
     if(model.fav==true )
     {
       favorites.add(model);
-      FirebaseFirestore.instance.collection('users').doc(user).set({'fav':FieldValue.arrayUnion([productName])},SetOptions(merge: true));
+
+      FirebaseFirestore.instance.collection('users').doc(uid).set({'fav':FieldValue.arrayUnion([productName])},SetOptions(merge: true));
     }
     else if(model.fav==false && favorites.contains(model))
     {
       favorites.remove(model);
-      FirebaseFirestore.instance.collection('users').doc(user).set({'fav':FieldValue.arrayRemove([productName])},SetOptions(merge: true));
+      FirebaseFirestore.instance.collection('users').doc(uid).set({'fav':FieldValue.arrayRemove([productName])},SetOptions(merge: true));
 
     }
 
@@ -147,10 +243,11 @@ class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
 
     return model.fav;
   }
-  void removeFavProduct(model,uId,productName)
+
+  void removeFavProduct(model,user2,productName)
   {
     favorites.remove(model);
-    FirebaseFirestore.instance.collection('users').doc(user).set({'fav':FieldValue.arrayRemove([productName])},SetOptions(merge: true));
+    FirebaseFirestore.instance.collection('users').doc(user2).set({'fav':FieldValue.arrayRemove([productName])},SetOptions(merge: true));
 
     emit(RemovedSuccessfully());
   }

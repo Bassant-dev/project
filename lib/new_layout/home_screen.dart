@@ -17,12 +17,12 @@ class ShopLayOut extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => SocialRegisterCubit()
+      create: (BuildContext context) => SocialCubit()
         ,
-      child: BlocConsumer<SocialRegisterCubit,SocialRegisterStates>(
+      child: BlocConsumer<SocialCubit,SocialStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          SocialRegisterCubit bloc1 = SocialRegisterCubit.get(context);
+          SocialCubit bloc1 =SocialCubit.get(context);
 
           return Scaffold(
 
